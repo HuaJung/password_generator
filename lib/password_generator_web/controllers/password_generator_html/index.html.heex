@@ -1,0 +1,38 @@
+<div class="container">
+
+  <%= form_for :password, _action=url(~p"/password-generator"), [method: :post], fn _ -> %>
+    <div class="form-group mt-4">
+      <%= label(:passwod, :length, "Password Length: ", class: "text-[1.3rem] px-4 font-semibold leading-10 tracking-tighter text-zinc-600") %> 
+      <%= select(:password, :length, @password_length, prompt: "--Please choose a option--" ) %>
+    </div>
+
+    <div class="form-group mt-4">
+      <%= label(:passwod, :numbers, "Numbers Included", class: "text-[1.3rem]  px-4 font-semibold leading-10 tracking-tighter text-zinc-600") %> 
+      <%= checkbox(:password, :uppercase) %>
+      (e.g. 12345...)
+    </div>
+  
+    <div class="form-group mt-4">
+      <%= label(:passwod, :uppercase, "Uppercase Characters Included", class: "text-[1.3rem]  px-4 font-semibold leading-10 tracking-tighter text-zinc-600") %> 
+      <%= checkbox(:password, :uppercase) %>
+      (e.g. ABCDE...)
+    </div>
+
+    <div class="form-group mt-4">
+      <%= label(:passwod, :symbols, "Symbols Included", class: "text-[1.3rem] px-4 font-semibold leading-10 tracking-tighter text-zinc-600") %> 
+      <%= checkbox(:password, :symbols) %>
+      (e.g. @#$%^&...)
+    </div>
+
+    <div class="grid grid-cols-1 items-center  mt-4 px-4 rounded-lg bg-zinc-100 px-2 py-3 hover:bg-zinc-200/80 mx-auto">
+      <%= submit "Generate Password", class: " text-[1.3rem] font-bold" %>
+    </div>
+    
+
+  <% end %>
+
+  <%= if @password do %>
+    <h2 class="text-[1.5rem] mt-4 px-4 font-semibold leading-10 tracking-tighter text-zinc-600">Your Password</h2>
+    <p class="bg-brand/5 text-brand rounded-full px-5 mt-4 font-medium leading-6"><%= @password %></p>
+  <% end %>
+</div>
